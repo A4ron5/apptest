@@ -13,12 +13,15 @@ const Wrapper = styled.div`
 `
 
 
-export const Header = ({ isLogin }) => (
-  <Wrapper>
-    <HeaderTitle isLogin path='/news'> Новости </HeaderTitle>
-    <HeaderTitle isLogin={isLogin} path='/profile'> Профиль </HeaderTitle>
-    <HeaderTitle isLogin path='/login'>
-      {isLogin ? 'Выйти' : 'Войти'}
-    </HeaderTitle>
-  </Wrapper>
-)
+export const Header = ({ status }) => {
+  const isLogin = status === 'ok' ? true : false ;
+  return (
+    <Wrapper>
+      <HeaderTitle isLogin path='/news'> Новости </HeaderTitle>
+      <HeaderTitle isLogin={isLogin} path='/profile'> Профиль </HeaderTitle>
+      <HeaderTitle isLogin path='/login'>
+        {isLogin ? 'Выйти' : 'Войти'}
+      </HeaderTitle>
+    </Wrapper>
+  )
+}

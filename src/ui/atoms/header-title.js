@@ -7,7 +7,7 @@ const Wrapper = styled.div``
 
 const Title = styled.p`
   font-size: 32px;
-  cursor: ${props => props.isLogin ? 'pointer' : 'null'};
+  cursor: ${props => props.isLogin ? 'pointer' : 'default'};
   color: ${props => props.isLogin ? 'black' : '#a4a4a5' };
   &:hover { 
     text-decoration: ${props => props.isLogin ? 'underline' : 'none' };
@@ -16,12 +16,13 @@ const Title = styled.p`
 const Link = styled(NavLink)`
   color: inherit;
   text-decoration: inherit;
+  cursor: inherit;
 `
 
 export const HeaderTitle = ({ children, isLogin, path }) => (
   <Wrapper>
     <Title isLogin={isLogin}>
-      <Link to={path} activeStyle={{textDecoration: 'underline'}}>
+      <Link to={path} activeStyle={ {textDecoration: 'underline' }}>
         {children}
       </Link>
     </Title>

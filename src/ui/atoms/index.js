@@ -1,4 +1,7 @@
 export { Container } from './container.js'
 export { HeaderTitle } from './header-title'
-export { ArticleTitle } from './article-title'
+export { PageTitle } from './page-title'
 export { ArticleInfo } from './article-info'
+export { ProfileInfo } from './profile-info'
+export { Input } from './input'
+export { Button } from './button'

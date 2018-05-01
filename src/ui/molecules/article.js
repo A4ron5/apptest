@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ArticleTitle, ArticleInfo } from '../atoms'
+import { PageTitle, ArticleInfo } from '../atoms'
 
 const Wrapper = styled.div`
   width: 75%;
@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   margin-bottom: 50px;
   padding: 15px 20px;
   border: 3px solid black;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
   transition:all .5s ease;
   &:hover{
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
 
 export const ArticleUI = ({ title, info }) => (
   <Wrapper>
-    <ArticleTitle>{ title }</ArticleTitle>
+    <PageTitle>{ title }</PageTitle>
     <ArticleInfo>{ info }</ArticleInfo>
   </Wrapper>
 )

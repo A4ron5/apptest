@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ArticleUI } from '../../ui/molecules'
 import { Loader } from '../loader'

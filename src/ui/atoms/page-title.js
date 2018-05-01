@@ -6,7 +6,7 @@ const Title = styled.h2`
   padding-bottom: 15px;
 `
 
-export const ArticleTitle = ({ children }) => (
+export const PageTitle = ({ children }) => (
   <Title>
     {children}
   </Title>  

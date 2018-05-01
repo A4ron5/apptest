@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const Box = styled.div`
+  margin-top: 100px;
 `
 
 const LoaderWrapper = styled.div`
