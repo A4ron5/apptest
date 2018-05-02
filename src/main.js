@@ -3,6 +3,9 @@ import { App } from './features/app'
 import { Articles } from './features/articles'
 import { Login } from './features/login'
 import { Profile } from './features/profile'
+import { NotFound } from './features/notfound'
+import { Home } from './features/home'
+import { PrivateRoute } from './features/private-route'
 
 import { store } from './store'
 import { Provider } from 'react-redux' 
@@ -14,13 +17,15 @@ class Main extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Switch>
             <App>
-              <Route path='/news' component={Articles}/>
-              <Route path='/login' component={Login}/>
-              <Route path='/profile/:id' component={Profile}/>
+              <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route path='/news' component={Articles}/>
+                <Route path='/login' component={Login}/>
+                <PrivateRoute path='/profile' component={Profile}/>
+                <Route component={NotFound}/>
+              </Switch>
             </App>
-          </Switch>
         </BrowserRouter>
       </Provider>
     );
