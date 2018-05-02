@@ -9,6 +9,6 @@ const ButtonRaw = styled.button`
   font-size: 24px;
 `
 
-export const Button = ({ children, onClick }) => (
+export const DefaultButton = ({ children, onClick }) => (
   <ButtonRaw onClick={onClick}>{children}</ButtonRaw>
 )

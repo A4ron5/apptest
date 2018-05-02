@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div``
 
-const Title = styled.p`
+export const Title = styled.p`
   font-size: 32px;
   cursor: ${props => props.isLogin ? 'pointer' : 'default'};
   color: ${props => props.isLogin ? 'black' : '#a4a4a5' };
@@ -19,10 +19,10 @@ const Link = styled(NavLink)`
   cursor: inherit;
 `
 
-export const HeaderTitle = ({ children, isLogin, path }) => (
+export const HeaderTitle = ({ children, isLogin, path, onClick, exact }) => (
   <Wrapper>
-    <Title isLogin={isLogin}>
-      <Link to={path} activeStyle={ {textDecoration: 'underline' }}>
+    <Title isLogin={isLogin} onClick={onClick}>
+      <Link exact={exact} to={path} activeStyle={{textDecoration: 'underline'}}>
         {children}
       </Link>
     </Title>
