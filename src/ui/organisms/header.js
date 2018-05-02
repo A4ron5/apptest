@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { HeaderTitle } from '../atoms'
+import { Title } from '../atoms'
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,16 +13,28 @@ const Wrapper = styled.div`
   margin-bottom: 50px;
 `
 
+const Auth = ({ isLogin, onClick }) => (
+  isLogin 
+  ? <Title isLogin onClick={onClick}>Выйти</Title>
+  : <HeaderTitle isLogin path='/login'>Войти</HeaderTitle>
+)
 
-export const Header = ({ status }) => {
-  const isLogin = status === 'ok' ? true : false ;
+const AuthProfile = ({ isLogin, id }) => {
+  const url = isLogin ? `/profile/${id}` : '';
+  return (
+    isLogin
+    ? <HeaderTitle isLogin={isLogin} path={url}> Профиль </HeaderTitle>
+    : <Title isLogin={isLogin}> Профиль </Title>
+  )
+}
+
+export const Header = ({ isLogin, onClick, id }) => {
   return (
     <Wrapper>
+      <HeaderTitle isLogin exact={true} path='/'> Главная </HeaderTitle>      
       <HeaderTitle isLogin path='/news'> Новости </HeaderTitle>
-      <HeaderTitle isLogin={isLogin} path='/profile'> Профиль </HeaderTitle>
-      <HeaderTitle isLogin path='/login'>
-        {isLogin ? 'Выйти' : 'Войти'}
-      </HeaderTitle>
+      <AuthProfile isLogin={isLogin} id={id}/> 
+      <Auth onClick={onClick} isLogin={isLogin}/>
     </Wrapper>
   )
 }
