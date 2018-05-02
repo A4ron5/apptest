@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Input } from '../atoms'
-import { Button } from '../atoms'
+import { DefaultButton } from '../atoms'
+import { LoaderButton } from '../atoms'
 
 const Wrapper = styled.div`
   width: 50%;
@@ -11,14 +12,20 @@ const Wrapper = styled.div`
   border: 2px solid black;
 `
 
-const Form = styled.form``
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
-export const LoginUI = ({ onClick, onChangeEmail, onChangePass }) => (
+export const LoginUI = ({ onClick, onChangeEmail, onChangePass, loading }) => (
   <Wrapper>
     <Form>
       <Input onChange={onChangeEmail} email/>
       <Input onChange={onChangePass}/>
-      <Button onClick={onClick}>Login</Button>
-    </Form>
+      { loading 
+      ? <LoaderButton/> 
+      : <DefaultButton onClick={onClick}>Login</DefaultButton>
+      }
+      </Form>
   </Wrapper>
 )

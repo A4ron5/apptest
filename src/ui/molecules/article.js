@@ -15,9 +15,9 @@ const Wrapper = styled.div`
   }
 `
 
-export const ArticleUI = ({ title, info }) => (
+export const ArticleUI = ({ title, text }) => (
   <Wrapper>
     <PageTitle>{ title }</PageTitle>
-    <ArticleInfo>{ info }</ArticleInfo>
+    <ArticleInfo>{ text }</ArticleInfo>
   </Wrapper>
 )
