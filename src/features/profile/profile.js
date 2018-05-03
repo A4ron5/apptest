@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Loader } from '../loader'
 import { fetchInfo } from './action'
+import { InfoUI } from '../../ui/molecules/info'
 
 class ProfileRaw extends React.Component {
 
@@ -14,7 +15,7 @@ class ProfileRaw extends React.Component {
     const { info, isFetching } = this.props;
     return (
       <Loader loading={isFetching}>
-        <h1>asdf</h1>
+        <InfoUI {...info}/>
       </Loader>
     )
   }
@@ -23,7 +24,7 @@ class ProfileRaw extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.login.login.data.id,
-    info: state.info.info,
+    info: state.info.info.data,
     isFetching: state.info.isFetching
   }
 }
