@@ -22,7 +22,13 @@ export const fetchArticles = () => dispatch => {
   dispatch(fetchArticlesRequest());
   
   return api.fetchArticles()
-    .then(data => dispatch(fetchArticlesSuccess(data)))
+    .then(res => {
+      if(res.status === 200){
+        dispatch(fetchArticlesSuccess(res))
+      }else {
+        throw new Error(res.statusText)
+      }
+    })
     .catch(err => dispatch(fetchArticlesFailure(err)))
 
 }

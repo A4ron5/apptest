@@ -20,7 +20,8 @@ export const articles = (state = { isFetching: false, articles: []}, action) => 
     case FETCH_ARTICLES_FAILURE:
       return {
         ...state,
-        err: action.err
+        err: action.err,
+        isFetching: false
       }
     default: 
       return state;

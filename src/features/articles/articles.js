@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ArticleUI } from '../../ui/molecules'
 import { Loader } from '../loader'
 import { fetchArticles } from './action'
 
-export class ArticlesRaw extends Component {
+export class ArticlesRaw extends React.PureComponent {
 
   componentDidMount() {
     this.props.fetchArticles();
   }
 
   render() {
-    const items = this.props.articles.map((item) => {
+    const { articles, loading } = this.props;
+    const items = articles.map((item) => {
       return (
         <ArticleUI
           key={item.id}
-          title={item.title}
-          info={item.text}
+          {...item}
         />
       )
     })
     return (
-      <Loader loading={this.props.loading}>
+      <Loader loading={loading}>
         {items}
       </Loader>
     )
