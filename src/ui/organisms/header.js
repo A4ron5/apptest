@@ -19,8 +19,8 @@ const Auth = ({ isLogin, onClick }) => (
   : <HeaderTitle isLogin path='/login'>Войти</HeaderTitle>
 )
 
-const AuthProfile = ({ isLogin, id }) => {
-  const url = isLogin ? `/profile/${id}` : '';
+const AuthProfile = ({ isLogin }) => {
+  const url = isLogin ? `/profile` : '';
   return (
     isLogin
     ? <HeaderTitle isLogin={isLogin} path={url}> Профиль </HeaderTitle>
@@ -28,12 +28,12 @@ const AuthProfile = ({ isLogin, id }) => {
   )
 }
 
-export const Header = ({ isLogin, onClick, id }) => {
+export const Header = ({ isLogin, onClick }) => {
   return (
     <Wrapper>
       <HeaderTitle isLogin exact={true} path='/'> Главная </HeaderTitle>      
       <HeaderTitle isLogin path='/news'> Новости </HeaderTitle>
-      <AuthProfile isLogin={isLogin} id={id}/> 
+      <AuthProfile isLogin={isLogin}/> 
       <Auth onClick={onClick} isLogin={isLogin}/>
     </Wrapper>
   )
