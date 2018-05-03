@@ -4,7 +4,18 @@ import {
   FETCH_INFO_FAILURE
 } from './action'
 
-export const info = (state = { isFetching: false, info: {}}, action) => {
+const initialState = {
+  info: {
+    data: {
+      city: '',
+      languages: [],
+      social: []
+    }
+  },
+  isFetching: false
+}
+
+export const info = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_INFO_REQUEST:
       return {
@@ -20,7 +31,8 @@ export const info = (state = { isFetching: false, info: {}}, action) => {
     case FETCH_INFO_FAILURE:
       return {
         ...state,
-        err: action.err
+        err: action.err,
+        isFetching: false
       }
     default: 
       return state;
