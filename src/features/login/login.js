@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { LoginUI } from '../../ui/molecules'
 import { postLogin } from './action'
-import { Loader } from '../loader'
 
 class LoginRaw extends Component {
 
@@ -13,11 +12,8 @@ class LoginRaw extends Component {
   }
   
   componentWillReceiveProps(nextProps){
-    if(nextProps.status === 'ok') {
-      const { history} = this.props;
-      const { id } = nextProps.data;
-      history.push(`/profile/${id}`)
-    }
+    const { history } = this.props;
+    nextProps.isAuth && history.push(`/profile`)
   }
 
   handleChangeEmail = (e) => {
@@ -40,23 +36,21 @@ class LoginRaw extends Component {
   render() {
     const { isFetching } = this.props;
     return (
-      <Loader loading={isFetching}>
         <LoginUI 
           onClick={this.handleClick}
           onChangeEmail={this.handleChangeEmail}
           onChangePass={this.handleChangePass}
+          loading={isFetching}
         />
-      </Loader>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    status: state.login.login.status,
     isFetching: state.login.isFetching,
-    data: state.login.login.data
+    isAuth: state.login.isAuth
   }
 }
 
-export const Login = withRouter(connect(mapStateToProps, {postLogin})(LoginRaw))
+export const Login = withRouter(connect(mapStateToProps, { postLogin })(LoginRaw))
