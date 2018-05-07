@@ -5,6 +5,7 @@ export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS'
 export const POST_LOGIN_FAILURE = 'POST_LOGIN_FAILURE'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const LOGIN_SERVER_MESSAGE = 'LOGIN_SERVER_MESSAGE'
 
 const postLoginRequest = () => ({
   type: POST_LOGIN_REQUEST
@@ -12,12 +13,17 @@ const postLoginRequest = () => ({
 
 const postLoginSuccess = ({ data }) => ({
   type: POST_LOGIN_SUCCESS,
-  item: data,
+  data
 })
 
 const postLoginFailure = (err) => ({
   type: POST_LOGIN_FAILURE,
   err
+})
+
+const loginServerErr = (errServer) => ({
+  type: LOGIN_SERVER_MESSAGE,
+  errServer
 })
 
 export const logIN = () => ({
@@ -28,21 +34,20 @@ export const logOUT = () => ({
   type: LOGOUT
 })
 
-export const postLogin = (email, password) => (dispatch, getState) => {
+export const postLogin = ({ email, password }) => (dispatch, getState) => {
   dispatch(postLoginRequest());
   
-  return api.postLogin(email, password)
+  return api.postLogin({ email, password })
     .then(res => {
       dispatch(postLoginSuccess(res))
-      console.log(getState())
-      if(getState().login.login.status === 'ok') {
-        dispatch(logIN())
-      }else {
-        throw new Error()
-      }
+      
+      getState().login.data.status === 'ok'
+        ? dispatch(logIN()) 
+        : dispatch(postLoginFailure(true))
     })
     .catch(err => {
-      dispatch(postLoginFailure(getState().login.login.message))
+      dispatch(postLoginFailure(true))
+      dispatch(loginServerErr(err))
     })
 
 }

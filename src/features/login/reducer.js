@@ -3,19 +3,22 @@ import {
   POST_LOGIN_SUCCESS, 
   POST_LOGIN_FAILURE,
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  LOGIN_SERVER_MESSAGE
 } from './action'
 
 const initialState = {
   isFetching: false,
-  login: {
+  err: false,
+  errServer: '',
+  isAuth: '',
+  data: {
     status: '',
     message: '',
     data: {
       id: ''
     }
-  },
-  isAuth: false
+  }
 }
 
 export const login = (state = initialState, action) => {
@@ -23,13 +26,14 @@ export const login = (state = initialState, action) => {
     case POST_LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        err: false
       } 
     case POST_LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        login: action.item
+        data: action.data
       }
     case POST_LOGIN_FAILURE:
       return {
@@ -44,7 +48,14 @@ export const login = (state = initialState, action) => {
       }
     case LOGOUT:
       return {
-        state: initialState
+        ...state,
+        isAuth: false,
+        err: false
+      }
+    case LOGIN_SERVER_MESSAGE: 
+      return {
+        ...state,
+        errServer: action.errServer
       }
     default: 
       return state

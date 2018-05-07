@@ -30,16 +30,18 @@ class LoginRaw extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.props.postLogin(this.state.email, this.state.password)
+    this.props.postLogin({ ...this.state })
   }
 
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, error, errorMsg } = this.props;
     return (
         <LoginUI 
           onClick={this.handleClick}
           onChangeEmail={this.handleChangeEmail}
           onChangePass={this.handleChangePass}
+          error={error}
+          errorMsg={errorMsg}
           loading={isFetching}
         />
     )
@@ -49,7 +51,9 @@ class LoginRaw extends Component {
 const mapStateToProps = state => {
   return {
     isFetching: state.login.isFetching,
-    isAuth: state.login.isAuth
+    isAuth: state.login.isAuth,
+    error: state.login.err,
+    errorMsg: state.login.data.message
   }
 }
 
