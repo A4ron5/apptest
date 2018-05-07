@@ -12,20 +12,23 @@ class ProfileRaw extends React.Component {
   }
 
   render() {
-    const { info, isFetching } = this.props;
+    const { isFetching } = this.props;
     return (
       <Loader loading={isFetching}>
-        <InfoUI {...info}/>
+        <InfoUI { ...this.props}/>
       </Loader>
     )
   }
 } 
 
 const mapStateToProps = state => {
+  const social = state.info.data.social.sort((a,b) => b.label === 'web' ? 1 : 0);
   return {
-    id: state.login.login.data.id,
-    info: state.info.info.data,
-    isFetching: state.info.isFetching
+    id: state.login.data.data.id,
+    city: state.info.data.city,
+    languages: state.info.data.languages,
+    social: social,
+    isFetching: state.info.isFetching,
   }
 }
 

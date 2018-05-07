@@ -10,7 +10,7 @@ const fetchInfoRequest = () => ({
 
 const fetchInfoSuccess = ({ data }) => ({
   type: FETCH_INFO_SUCCESS,
-  item: data
+  ...data
 })
 
 const fetchInfoFailure = (err) => ({
@@ -18,11 +18,16 @@ const fetchInfoFailure = (err) => ({
   err
 })
 
-export const fetchInfo = (id) => dispatch => {
+export const fetchInfo = (id) => (dispatch, getState) => {
   dispatch(fetchInfoRequest());
   
   return api.fetchInfo(id)
-    .then(data => dispatch(fetchInfoSuccess(data)))
-    .catch(err => dispatch(fetchInfoFailure(err)))
+    .then(res => {
+      dispatch(fetchInfoSuccess(res))
+      getState().info.status === 'ok'
+        ? ''
+        : dispatch(fetchInfoFailure(true))
+    })
+    .catch(err => console.log(err))
 
 }

@@ -5,12 +5,10 @@ import {
 } from './action'
 
 const initialState = {
-  info: {
-    data: {
-      city: '',
-      languages: [],
-      social: []
-    }
+  data: {
+    city: '',
+    languages: [],
+    social: []
   },
   isFetching: false
 }
@@ -26,7 +24,7 @@ export const info = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        info: action.item,
+        data: action.data,
       }
     case FETCH_INFO_FAILURE:
       return {
