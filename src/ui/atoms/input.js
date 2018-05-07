@@ -15,5 +15,5 @@ const InputRaw = styled.input.attrs({
 `
 
 export const Input = ({ email, onChange}) => (
-  <InputRaw onChange={onChange} email={email}/>
+  <InputRaw required onChange={onChange} email={email}/>
 )
