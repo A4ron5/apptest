@@ -3,8 +3,14 @@ import { connect } from 'react-redux'
 import { ArticleUI } from '../../ui/molecules'
 import { Loader } from '../loader'
 import { fetchArticles } from './action'
+import PropTypes from 'prop-types'
 
 export class ArticlesRaw extends React.PureComponent {
+
+  static propTypes = {
+    articles: PropTypes.array,
+    loading: PropTypes.bool
+  }
 
   componentDidMount() {
     this.props.fetchArticles();
