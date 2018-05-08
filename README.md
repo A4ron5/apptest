@@ -1,3 +1,3 @@
-Приложение
-npm install
+Приложение</br>
+npm install</br>
 npm start
