@@ -6,10 +6,11 @@ import {
 
 const initialState = {
   data: {
-    city: '',
+    city: ' ',
     languages: [],
     social: []
   },
+  err: false,
   isFetching: false
 }
 
@@ -18,13 +19,16 @@ export const info = (state = initialState, action) => {
     case FETCH_INFO_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        err: false
       }
     case FETCH_INFO_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        data: action.data,
+        message: action.message,
+        data: action.data || state.data,
+        status: action.status
       }
     case FETCH_INFO_FAILURE:
       return {
