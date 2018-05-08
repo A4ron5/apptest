@@ -11,8 +11,6 @@ const fetchArticles = () => {
 
 const fetchInfo = (id) => {
   return axios.get(`${URL_INFO}/${id}`)
-  //return axios.get(`${URL_INFO}/2`)
-  
 }
 
 const postLogin = ({ email, password }) => {
