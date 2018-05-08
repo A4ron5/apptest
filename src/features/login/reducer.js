@@ -3,15 +3,13 @@ import {
   POST_LOGIN_SUCCESS, 
   POST_LOGIN_FAILURE,
   LOGIN,
-  LOGOUT,
-  LOGIN_SERVER_MESSAGE
+  LOGOUT
 } from './action'
 
 const initialState = {
   isFetching: false,
   err: false,
-  errServer: '',
-  isAuth: '',
+  isAuth: false,
   data: {
     status: '',
     message: '',
@@ -33,7 +31,9 @@ export const login = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        data: action.data
+        status: action.status,
+        data: action.data || state.data,
+        message: action.message
       }
     case POST_LOGIN_FAILURE:
       return {
@@ -51,11 +51,6 @@ export const login = (state = initialState, action) => {
         ...state,
         isAuth: false,
         err: false
-      }
-    case LOGIN_SERVER_MESSAGE: 
-      return {
-        ...state,
-        errServer: action.errServer
       }
     default: 
       return state

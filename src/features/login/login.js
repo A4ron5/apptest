@@ -3,8 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { LoginUI } from '../../ui/molecules'
 import { postLogin } from './action'
+import PropTypes from 'prop-types'
 
 class LoginRaw extends Component {
+
+  static propTypes = {
+    isFetching: PropTypes.bool,
+    isAuth: PropTypes.bool,
+    error: PropTypes.bool,
+    errorMsg: PropTypes.string
+  }
 
   state = {
     email: '',
@@ -53,7 +61,7 @@ const mapStateToProps = state => {
     isFetching: state.login.isFetching,
     isAuth: state.login.isAuth,
     error: state.login.err,
-    errorMsg: state.login.data.message
+    errorMsg: state.login.message
   }
 }
 
